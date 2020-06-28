@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    主页
+{% endblock %}
+
+{% block content %}
+    <h1>主页</h1>
+    {% with totao_images_created=request.user.images_created.count %}
+        <p>欢迎来到您的主页,您的书签已经加入了{{ totao_images_created }}张图片</p>
+    {% endwith %}
+    <p>将以下按钮拖动到书签工具栏上,即可将其他网站的图片添加到书签<a href="javascript:{% include 'bookmarklet_launcher.js' %}" class="button"></a></p>
+    <p>欢迎来到您的主页,可以点击<a href="{% url 'edit' %}">编辑个人信息</a></p>
+
+  <h2>发生了什么?</h2>
+  <div id="action-list">
+    {% for action in actions %}
+      {% include "actions/action/detail.html" %}
+    {% endfor %}
+  </div>
+{% endblock %}

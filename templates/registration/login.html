@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+登录
+{% endblock %}
+
+{% block content %}
+    <h1>登录</h1>
+    {% if form.erros %}
+        <p>
+            您的用户名和密码不匹配,请重试
+        </p>
+    {% else %}
+        <p>请填写下列表单信息</p>
+    {% endif %}
+    <div class="login-form">
+        <form action="{% url 'login' %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <p><input type="submit" value="登录"></p>
+        </form>
+        <p><a href="{% url 'password_reset' %}">忘记密码</a></p>
+    </div>
+    <div class="social">
+        <ul>
+            <li class="google"><a href="{% url 'social:begin' 'weibo' %}">微博登录</a></li>
+            <li class="google"><a href="{% url 'social:begin' 'qq' %}">QQ登录</a></li>
+        </ul>
+    </div>
+{% endblock %}
+

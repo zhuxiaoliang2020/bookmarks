@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    编辑个人信息
+{% endblock %}
+
+{% block content %}
+    <h1>编辑个人信息</h1>
+    <form action="." method="post" enctype="multipart/form-data" novalidate>
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="提交"></p>
+    </form>
+{% endblock %}
